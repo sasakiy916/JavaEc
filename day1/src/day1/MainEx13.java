@@ -7,6 +7,7 @@ public class MainEx13 {
 		Wizard w = new Wizard("魔法使い",-1,10);
 		w.setWand(new Wand("すごい杖",1.5));
 		w.heal(h);
+		System.out.println(h);
 	}
 
 }

@@ -20,4 +20,9 @@ public class Hero {
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
+	@Override
+	public String toString() {
+		return "名前:" + this.name + "/HP:" + this.hp;
+	}
+
 }
