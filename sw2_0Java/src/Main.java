@@ -212,9 +212,9 @@ public class Main {
 					int selectDifficulty = selectMenu(difficulty, "難易度");
 					switch (selectDifficulty) {
 					case 0:
-						monsterParty.add(new Monster("コボルド", "A"));
+						monsterParty.add(new Monster("コボルト", "A"));
 						monsterParty.add(new Monster("ゴブリン"));
-						monsterParty.add(new Monster("コボルド", "B"));
+						monsterParty.add(new Monster("コボルト", "B"));
 						break;
 					case 1:
 						monsterParty.add(new Monster("ゴブリン", "A"));

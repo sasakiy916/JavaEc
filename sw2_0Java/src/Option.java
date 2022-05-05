@@ -66,7 +66,7 @@ public class Option {
 	}
 
 	//文字のバイト数取得
-	private  static int getByteLength(String string, Charset charset) {
+	public  static int getByteLength(String string, Charset charset) {
 		return string.getBytes(charset).length;
 	}
 }
