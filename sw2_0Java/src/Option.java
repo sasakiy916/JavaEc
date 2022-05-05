@@ -44,14 +44,20 @@ public class Option {
 	}
 	//ライン表示
 	public static void printLine(int num) {
-		printLine(num,"-");
+		printLine(num,"-",true);
+	}
+	public static void printLine(int num,boolean n) {
+		printLine(num,"-",n);
+	}
+	public static void printLine(int num,String line) {
+		printLine(num,line,true);
 	}
 	//ライン表示
-	public static void printLine(int num,String line) {
+	public static void printLine(int num,String line,boolean n) {
 		for(int i=0;i<num;i++) {
 			System.out.print(line);
 		}
-		System.out.println();
+		if(n)System.out.println();
 	}
 	//全角半角の文字位置合わせ
 	public static String format(String target, int length){

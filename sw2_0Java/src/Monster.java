@@ -10,14 +10,20 @@ public class Monster extends Character{
 	private int money;//落とすお金
 	private int exp;//落とす経験点
 	
+	//コンストラクタ
 	public Monster() {
 		
 	}
-	public Monster(String monsterName,String path) {
-		setName(monsterName);
+	public Monster(String name,String suffix) {
+		this(name);
+		setName(getName() + suffix);
+	}
+	public Monster(String name) {
+		setName(name);
+		String path = "monster/モンスター一覧.csv";
 		List<String[]> monsters = Option.load(path);
 		for(int i=1;i<monsters.size();i++) {
-			if(monsterName.equals(monsters.get(i)[0])) {
+			if(name.equals(monsters.get(i)[0])) {
 				for(int j=0;j<monsters.get(i).length;j++) {
 					if(monsters.get(0)[j].equals("命中力")) setHit(Integer.parseInt(monsters.get(i)[j]));
 					if(monsters.get(0)[j].equals("固定命中力")) setFixedHit(Integer.parseInt(monsters.get(i)[j]));
