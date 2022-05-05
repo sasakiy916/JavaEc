@@ -101,10 +101,8 @@ public class Main{
 						continue;
 					}
 					switch(menu) {
-					//未完成
 					//酒場
 					case BAR:
-						System.out.println("未完成");
 						System.out.println("パーティに誘う冒険者を探します");
 						System.out.println("現在のパーティ");
 						BattleManager.displayStatus(playerParty);
@@ -191,7 +189,6 @@ public class Main{
 						//掲示板
 						//デバッグ中
 					case BOARD:
-						System.out.println("未完成");
 						if(PlayerData.showStayPlayer()) {
 							System.out.println("酒場には誰も居ません");
 							break;
@@ -203,7 +200,6 @@ public class Main{
 						break;
 						//キャラの成長
 					case GROWUP:
-						System.out.println("未完成");
 						System.out.println("経験点を消費して技能レベルを上げられます");
 						for(int i=0;i<playerParty.size();i++) {
 							System.out.printf("%s %d%n",playerParty.get(i).getName(),i+1);
@@ -220,11 +216,14 @@ public class Main{
 				break;
 				//戦闘
 			case BATTLE:
-				System.out.println("未完成");
 				Thread.sleep(1000);
 				//モンスター用意
+				String monsterPath = "monster/モンスター一覧.csv";
 				monsterParty.add(new Kobold());
 				monsterParty.add(new Goblin());
+				monsterParty.add(new Monster("ドラゴン",monsterPath));
+				String name = ((Monster)monsterParty.get(2)).getName();
+				((Monster)monsterParty.get(2)).setName(name + "A");
 				System.out.println();
 				//戦闘
 				BattleManager.battle(playerParty, monsterParty);

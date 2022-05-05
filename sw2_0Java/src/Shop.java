@@ -198,6 +198,21 @@ public class Shop {
 				case SWORD:
 					path += "ソードB.csv";
 					break;
+				case FRAIL:
+					path += "フレイルB.csv";
+					break;
+				case SPEAR:
+					path += "スピアB.csv";
+					break;
+				case MACE:
+					path += "メイスB.csv";
+					break;
+				case WARHAMMER:
+					path += "ウォーハンマーB.csv";
+					break;
+				case STUFF:
+					path += "スタッフB.csv";
+					break;
 				default:
 					break;
 				}
