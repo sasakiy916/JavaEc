@@ -8,4 +8,8 @@ public class Tramp {
 		this.num = num;
 		this.simbol = simbol;
 	}
+	@Override
+	public String toString() {
+		return "Tramp [name=" + name + ", num=" + num + ", simbol=" + simbol + "]";
+	}
 }
