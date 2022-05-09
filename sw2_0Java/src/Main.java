@@ -59,10 +59,10 @@ public class Main {
 			// 冒険者ギルド
 			case SELECTCHARACTER:
 				enum GuildMenu {
-					BAR, SHOP, BOARD, GROWUP,
+					BAR, SHOP, BOARD, GROWUP,HOTEL
 				}
 				// メニュー用意
-				String[] guildMenus = { "酒場", "ショップ", "冒険者を追い出す", "キャラの成長", };
+				String[] guildMenus = { "酒場", "ショップ", "冒険者を追い出す", "キャラの成長","宿屋" };
 				// メニュー表示
 				while (true) {
 					int widthLine = 25;
@@ -177,14 +177,13 @@ public class Main {
 					// デバッグ中
 					case BOARD:
 						if (PlayerData.showStayPlayer()) {
-							System.out.println("酒場には誰も居ません");
-							break;
+							System.out.print("誰を追い出しますか?(戻る:0)>>");
+							select = scan.nextInt() - 1;
+							if (select == -1)
+								break;
+							PlayerData.selectRemove(select);
 						}
-						System.out.print("誰を追い出しますか?(戻る:0)>>");
-						select = scan.nextInt() - 1;
-						if (select == -1)
-							break;
-						PlayerData.selectRemove(select);
+						Thread.sleep(1000);
 						break;
 					// キャラの成長
 					case GROWUP:
@@ -199,6 +198,19 @@ public class Main {
 							break;
 						((Player) playerParty.get(select)).addJob();
 						break;
+					case HOTEL:
+						System.out.println("出血大サービスだ！タダで泊めてやるよ！");
+						for(Character c:playerParty) {
+							if(c instanceof Player) {
+								Player p = (Player)c;
+								p.setHp(p.getMaxHp());
+								System.out.printf("%sは眠った%n",p.getName());
+							}
+						}
+						BattleManager.displayStatus(playerParty);
+						break;
+					default:
+						break;
 					}
 				}
 				Thread.sleep(1000);
@@ -212,9 +224,9 @@ public class Main {
 					int selectDifficulty = selectMenu(difficulty, "難易度");
 					switch (selectDifficulty) {
 					case 0:
-						monsterParty.add(new Monster("コボルト", "A"));
+						monsterParty.add(new Monster("コボルド", "A"));
 						monsterParty.add(new Monster("ゴブリン"));
-						monsterParty.add(new Monster("コボルト", "B"));
+						monsterParty.add(new Monster("コボルド", "B"));
 						break;
 					case 1:
 						monsterParty.add(new Monster("ゴブリン", "A"));
