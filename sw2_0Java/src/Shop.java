@@ -222,7 +222,9 @@ public class Shop {
 				System.out.println("-----------------------------");
 				System.out.printf("%s 選択肢%n",Option.format("防具名",8));
 				for(String armorName:armors) {
-					System.out.printf("%s  %d%n",Option.format(armorName,8),++select);
+					if(!armorName.equals("")) {
+						System.out.printf("%s  %d%n",Option.format(armorName,8),++select);
+					}
 				}
 				System.out.println("-----------------------------");
 				System.out.print("どの防具を見ますか?(一つ戻る:0)>>");
@@ -281,6 +283,10 @@ public class Shop {
 	//購入した装備を受け取る
 	private static int receiveEquip(List<Equipment> shop,int select,int money,Player player) {
 		//筋力が足りるか
+		if(shop.get(select).getPrice() > player.getMoney()) {
+			System.out.println("所持金が足りません");
+			return money;
+		}	
 		if(shop.get(select).getNeedStr() <= player.getStr()) {
 			//所持金減らす
 			money = money - shop.get(select).getPrice();
