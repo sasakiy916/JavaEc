@@ -24,12 +24,12 @@ public class Main {
 			list.add(line.split(","));
 		}
 		br.close();
-		
+
 		List<Card> cards = new ArrayList<>();
 		for(String[] card:list) {
 			cards.add(new Card(card[0],card[1]));
 		}
-		
+
 		System.out.println("適当な二枚のカードを選んでください");
 		for(int i=0;i<2;i++) {
 			int select = rand.nextInt(cards.size());
@@ -39,6 +39,4 @@ public class Main {
 			System.out.println(card);
 		}
 	}
-
-
 }
