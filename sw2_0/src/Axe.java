@@ -1,3 +1,4 @@
+
 public class Axe extends Weapon {
 	//斧一覧列挙
 	public enum AxeList{
@@ -5,7 +6,7 @@ public class Axe extends Weapon {
 		BATTLEAXE,
 	}//コンストラクタ
 	public Axe() {
-
+		
 	}
 	public Axe(String name,String path) {
 		super(name,path);

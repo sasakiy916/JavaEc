@@ -12,9 +12,10 @@ public class Main {
 	enum TitleMenu {
 		NEWCHARACTER, SELECTCHARACTER, BATTLE, DIFFICULTY, QUIT,
 	}
-				enum GuildMenu {
-					BAR, SHOP, BOARD, GROWUP,
-				}
+
+	enum GuildMenu {
+		BAR, SHOP, BOARD, GROWUP, HOTEL
+	}
 
 	public static void main(String[] args) throws Exception {
 		// タイトル
@@ -62,7 +63,7 @@ public class Main {
 			// 冒険者ギルド
 			case SELECTCHARACTER:
 				// メニュー用意
-				String[] guildMenus = { "酒場", "ショップ", "冒険者を追い出す", "キャラの成長", };
+				String[] guildMenus = { "酒場", "ショップ", "冒険者を追い出す", "キャラの成長", "宿屋" };
 				// メニュー表示
 				while (true) {
 					int widthLine = 25;
@@ -177,14 +178,13 @@ public class Main {
 					// デバッグ中
 					case BOARD:
 						if (PlayerData.showStayPlayer()) {
-							System.out.println("酒場には誰も居ません");
-							break;
+							System.out.print("誰を追い出しますか?(戻る:0)>>");
+							select = scan.nextInt() - 1;
+							if (select == -1)
+								break;
+							PlayerData.selectRemove(select);
 						}
-						System.out.print("誰を追い出しますか?(戻る:0)>>");
-						select = scan.nextInt() - 1;
-						if (select == -1)
-							break;
-						PlayerData.selectRemove(select);
+						Thread.sleep(1000);
 						break;
 					// キャラの成長
 					case GROWUP:
@@ -198,6 +198,19 @@ public class Main {
 						if (select == -1)
 							break;
 						((Player) playerParty.get(select)).addJob();
+						break;
+					case HOTEL:
+						System.out.println("出血大サービスだ！タダで泊めてやるよ！");
+						for (Character c : playerParty) {
+							if (c instanceof Player) {
+								Player p = (Player) c;
+								p.setHp(p.getMaxHp());
+								System.out.printf("%sは眠った%n", p.getName());
+							}
+						}
+						BattleManager.displayStatus(playerParty);
+						break;
+					default:
 						break;
 					}
 				}

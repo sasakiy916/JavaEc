@@ -38,6 +38,7 @@ public class BattleManager{
 			int pre = parties.get(party);
 			for(Character character:party) {
 				if(pre < character.getPre()) {
+					pre = character.getPre();
 					parties.put(party,character.getPre());
 					if(character instanceof Player) {
 						playerPreName = character.getName();
@@ -147,7 +148,7 @@ public class BattleManager{
 				for(Character pl:player) {
 					Player ppl = (Player)pl;
 					ppl.setExp(ppl.getExp()+sumExp);
-					ppl.setHp(ppl.getMaxHp());
+//					ppl.setHp(ppl.getMaxHp());
 				}
 				break;
 			}
@@ -193,14 +194,14 @@ public class BattleManager{
 		//HP表示
 		System.out.print("|");
 		for(int i=0;i<party.size();i++) {
-			System.out.printf("%s",Option.format("ＨＰ:"+party.get(i).getHp(),lengths[i]));
+			System.out.printf("%s",Option.format("ＨＰ:"+party.get(i).getHp()+"/"+party.get(i).getMaxHp(),lengths[i]));
 			System.out.print("|");
 		}
 		System.out.println();
 		//MP表示
 		System.out.print("|");
 		for(int i=0;i<party.size();i++) {
-			System.out.printf("%s",Option.format("ＭＰ:"+ party.get(i).getMp(),lengths[i]));
+			System.out.printf("%s",Option.format("ＭＰ:"+ party.get(i).getMp()+"/"+party.get(i).getMaxMp(),lengths[i]));
 			System.out.print("|");
 		}
 		System.out.println();
@@ -236,6 +237,10 @@ public class BattleManager{
 		Option.printLine(25);
 		System.out.printf("<<%sの回避判定>>%n",second.getName());
 		int avoi = second.judgeAvoi();
+		if(hit==0 && avoi==0) {//命中自動成功かつ回避自動成功時
+			System.out.println("回避に自動成功");
+			return;
+		}
 		switch(avoi) {
 		//自動成功
 		case 0:
@@ -283,7 +288,7 @@ public class BattleManager{
 		//合算ダメージ
 		int totalDamage = calcDamage + first.getAddDamage();
 		//適用ダメージ
-		int appliedDamage = totalDamage - second.getDef();
+		int appliedDamage = totalDamage - second.getDef(); 
 		if(appliedDamage <= 0) {
 			System.out.printf("%sにダメージを与えられなかった%n",second.getName());
 			return;

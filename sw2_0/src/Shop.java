@@ -154,7 +154,7 @@ public class Shop {
 			buy = scan.nextInt();
 			System.out.println();
 			player.setMoney(money);//残金を設定
-		}
+		}							
 	}
 	//武器か防具か選ぶ
 	private static int selectWeponOrProtector(String[] equips,int select) {
@@ -222,7 +222,9 @@ public class Shop {
 				System.out.println("-----------------------------");
 				System.out.printf("%s 選択肢%n",Option.format("防具名",8));
 				for(String armorName:armors) {
-					System.out.printf("%s  %d%n",Option.format(armorName,8),++select);
+					if(!armorName.equals("")) {
+						System.out.printf("%s  %d%n",Option.format(armorName,8),++select);
+					}
 				}
 				System.out.println("-----------------------------");
 				System.out.print("どの防具を見ますか?(一つ戻る:0)>>");
@@ -248,8 +250,7 @@ public class Shop {
 			//装備データの読み込み,Listに追加
 			equips = Option.load(path);
 			for(int i=1;i<equips.size();i++) {//一行目の見出しは無視
-//				if(equips.get(i)[0] != "") {//名称の無い行は無視(用法が二つある装備は片方だけ)
-				if(equips.get(i)[0].matches(".+")) {//名称の無い行は無視(用法が二つある装備は片方だけ)
+				if(equips.get(i)[0] != "") {//名称の無い行は無視(用法が二つある装備は片方だけ)
 					if(path.matches("weapon/.*")) {
 						shop.add(new Weapon(equips.get(i)[0],path));
 					}else if(path.matches("armor/.*")){
@@ -282,6 +283,10 @@ public class Shop {
 	//購入した装備を受け取る
 	private static int receiveEquip(List<Equipment> shop,int select,int money,Player player) {
 		//筋力が足りるか
+		if(shop.get(select).getPrice() > player.getMoney()) {
+			System.out.println("所持金が足りません");
+			return money;
+		}	
 		if(shop.get(select).getNeedStr() <= player.getStr()) {
 			//所持金減らす
 			money = money - shop.get(select).getPrice();

@@ -2,7 +2,11 @@
 
 public enum Race {
 	HUMAN("人間"),
-	ELF("エルフ");
+	ELF("エルフ"),
+	DWARF("ドワーフ"),
+	TABIT("タビット"),
+	RUNEFALK("ルーンフォーク"),
+	NIGHTMARE("ナイトメア");
 	
 	private final String name;
 	

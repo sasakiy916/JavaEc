@@ -1,6 +1,8 @@
 import java.util.List;
 
 public class Monster extends Character{
+	private int maxHp;
+	private int maxMp;
 	private int avoi;//回避力
 	private int pre;//先制力
 	private int hit;//命中力
@@ -37,6 +39,8 @@ public class Monster extends Character{
 					if(monsters.get(0)[j].equals("ガメル")) setMoney(Integer.parseInt(monsters.get(i)[j]));
 					if(monsters.get(0)[j].equals("経験点")) setExp(Integer.parseInt(monsters.get(i)[j]));
 				}
+				this.maxHp = getHp();
+				this.maxMp = getMp();
 				break;
 			}
 		}
@@ -110,5 +114,13 @@ public class Monster extends Character{
 	public int damageRoll() {
 		// TODO 自動生成されたメソッド・スタブ
 		return 0;
+	}
+	@Override
+	public int getMaxHp() {
+		return this.maxHp;
+	}
+	@Override
+	public int getMaxMp() {
+		return this.maxMp;
 	}
 }
