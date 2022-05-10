@@ -26,7 +26,7 @@ public class Main {
 		//参加者の用意
 		Player my = new Player("自分");
 		Player pc = new Player("PC");
-		
+
 		//トランプ用意
 		List<Tramp> tramps = new ArrayList<>();//山札用
 		String[] simbols = {"♡","♧","♤","♢"};//マーク
@@ -54,7 +54,7 @@ public class Main {
 		removeTramp(my,false);
 		removeTramp(pc,false);
 		Thread.sleep(1000);
-		
+
 		//ババ抜き開始
 		while(true) {
 			//相手の手札表示
@@ -69,7 +69,7 @@ public class Main {
 			//自分の手札表示
 			System.out.println("自分の手札"+ my.tramps);
 			System.out.println("-----------------------------------");
-			
+
 			//自分の番
 			System.out.print("どれを引く？(左から何番目か)>>");
 			int num = scan.nextInt()-1;

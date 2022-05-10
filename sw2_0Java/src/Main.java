@@ -13,6 +13,10 @@ public class Main {
 		NEWCHARACTER, SELECTCHARACTER, BATTLE, DIFFICULTY, QUIT,
 	}
 
+	enum GuildMenu {
+		BAR, SHOP, BOARD, GROWUP, HOTEL
+	}
+
 	public static void main(String[] args) throws Exception {
 		// タイトル
 		List<Character> playerParty = new ArrayList<>();
@@ -58,11 +62,8 @@ public class Main {
 				continue;
 			// 冒険者ギルド
 			case SELECTCHARACTER:
-				enum GuildMenu {
-					BAR, SHOP, BOARD, GROWUP,HOTEL
-				}
 				// メニュー用意
-				String[] guildMenus = { "酒場", "ショップ", "冒険者を追い出す", "キャラの成長","宿屋" };
+				String[] guildMenus = { "酒場", "ショップ", "冒険者を追い出す", "キャラの成長", "宿屋" };
 				// メニュー表示
 				while (true) {
 					int widthLine = 25;
@@ -200,11 +201,11 @@ public class Main {
 						break;
 					case HOTEL:
 						System.out.println("出血大サービスだ！タダで泊めてやるよ！");
-						for(Character c:playerParty) {
-							if(c instanceof Player) {
-								Player p = (Player)c;
+						for (Character c : playerParty) {
+							if (c instanceof Player) {
+								Player p = (Player) c;
 								p.setHp(p.getMaxHp());
-								System.out.printf("%sは眠った%n",p.getName());
+								System.out.printf("%sは眠った%n", p.getName());
 							}
 						}
 						BattleManager.displayStatus(playerParty);
